@@ -1,7 +1,7 @@
 users
 =====
 
-Encapsulate the functionality to simply user/service/root account management.
+Encapsulate the functionality to simplify user/service/root account management.
 
 Samples
 -------
