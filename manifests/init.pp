@@ -3,11 +3,11 @@ class users {
 }
 
 define users::add_user ( $fullname,
-                  $gid,
-                  $groups,
-                  $password,
-                  $shell = '/bin/bash',
-                  $uid ) {
+                         $gid,
+                         $groups,
+                         $password,
+                         $shell = '/bin/bash',
+                         $uid ) {
   user { "$name":
     ensure           => present,
     comment          => $fullname,
@@ -41,9 +41,9 @@ define users::add_user ( $fullname,
 }
 
 define users::add_service ( $gid,
-                     $groups,
-                     $home = '/var/lib',
-                     $uid ) {
+                            $groups,
+                            $home = '/var/lib',
+                            $uid ) {
   user { "$name":
     ensure     => present,
     comment    => '',
@@ -66,7 +66,7 @@ define users::add_group ( $gid ) {
 }
 
 define users::add_ssh_key ( $key,
-                     $type ) {
+                            $type ) {
   ssh_authorized_key { "$name":
     ensure  => present,
     key     => $key,
