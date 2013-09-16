@@ -2,7 +2,7 @@ class users {
 
 }
 
-define add_user ( $fullname,
+define users::add_user ( $fullname,
                   $gid,
                   $groups,
                   $password,
@@ -40,7 +40,7 @@ define add_user ( $fullname,
 
 }
 
-define add_service ( $gid,
+define users::add_service ( $gid,
                      $groups,
                      $home = '/var/lib',
                      $uid ) {
@@ -57,7 +57,7 @@ define add_service ( $gid,
 
 }
 
-define add_group ( $gid ) {
+define users::add_group ( $gid ) {
   group { "$name":
     ensure => present,
     gid    => $gid,
@@ -65,7 +65,7 @@ define add_group ( $gid ) {
     
 }
 
-define add_ssh_key ( $key,
+define users::add_ssh_key ( $key,
                      $type ) {
   ssh_authorized_key { "$name":
     ensure  => present,
@@ -77,7 +77,7 @@ define add_ssh_key ( $key,
 
 }
 
-define set_root_password ( $password ) {
+define users::set_root_password ( $password ) {
   user { 'root':
     ensure   => present,
     password => $password,
