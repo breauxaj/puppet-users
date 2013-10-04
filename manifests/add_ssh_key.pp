@@ -1,4 +1,5 @@
 define users::add_ssh_key (
+  $username,
   $key,
   $type
 ) {
@@ -6,8 +7,8 @@ define users::add_ssh_key (
     ensure  => present,
     key     => $key,
     type    => $type,
-    user    => $name,
-    require => File["/home/${name}/.ssh/authorized_keys"],
+    user    => $username,
+    require => File["/home/${username}/.ssh/authorized_keys"],
   }
 
 }
