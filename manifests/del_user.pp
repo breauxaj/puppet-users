@@ -4,4 +4,9 @@ define users::del_user {
     force  => true,
   }
 
+  file { "/home/${name}":
+    ensure => absent,
+    force => true,
+  }
+
 }
