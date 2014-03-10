@@ -1,10 +1,10 @@
 define users::del_user {
   user { $name:
-    ensure           => absent,
+    ensure => absent,
   }
 
   file { "/home/${name}":
-    ensure  => absent,
+    ensure => absent,
   }
 
 }
