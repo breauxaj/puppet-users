@@ -23,3 +23,11 @@ users::add_service { 'auto': gid => 400, groups => '', uid => 400 }
 ```
 users::set_root_password { 'default': password => '' }
 ```
+
+License
+-------
+GPL3
+
+Contact
+-------
+breauxaj AT gmail DOT com
