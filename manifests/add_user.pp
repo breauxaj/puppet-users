@@ -20,6 +20,14 @@ define users::add_user (
     uid              => $uid,
   }
 
+  file { "/home/${name}/.gnupg":
+    ensure  => directory,
+    owner   => $uid,
+    group   => $gid,
+    mode    => '0700',
+    require => User[$name],
+  }
+
   file { "/home/${name}/.ssh":
     ensure  => directory,
     owner   => $uid,
