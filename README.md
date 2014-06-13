@@ -23,6 +23,13 @@ users::add_service { 'auto': gid => 400, groups => '', uid => 400 }
 ```
 users::set_root_password { 'default': password => '' }
 ```
+```
+users::add_my_cnf { 'deploy':
+  dbuser => 'deploy',
+  dbpass => 'changeme',
+  dbhost => '127.0.0.1',
+}
+```
 
 License
 -------
