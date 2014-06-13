@@ -6,13 +6,12 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
   filename = "/home/" + @resource[:name] + "/.my.cnf"
 
   def create
-    #content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = \"" + @resource[:dbpass] + "\"\nhost = " + @resource[:dbhost] + "\n"
+    content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = \"" + @resource[:dbpass] + "\"\nhost = " + @resource[:dbhost] + "\n"
 
-    #File.open(filename, "w") do |file|
-    #  file.puts(content)
-    #end
+    File.open(filename, "w") do |file|
+      file.puts(content)
+    end
 
-    puts(filename)
   end
 
   def destroy
