@@ -25,7 +25,7 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
   end
 
   autorequire(:file) do
-    ["/home", filename]
+    [filename]
   end
 
 end
