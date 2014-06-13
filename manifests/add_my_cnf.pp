@@ -5,7 +5,6 @@ define users::add_my_cnf (
 ) {
   my_cnf { $name:
     ensure   => present,
-    username => $name,
     dbuser   => $dbuser,
     dbpass   => $dbpass,
     dbhost   => $dbhost,
