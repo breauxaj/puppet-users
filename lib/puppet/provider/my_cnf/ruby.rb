@@ -1,5 +1,3 @@
-require 'fileutils'
-
 Puppet::Type.type(:my_cnf).provide(:ruby) do
   desc "Manage the .my.cnf file"
 
