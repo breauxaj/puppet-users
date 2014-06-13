@@ -3,7 +3,7 @@ Puppet::Type.newtype(:my_cnf) do
 
   ensurable
 
-  newparam(:username) do
+  newparam(:name) do
     desc "Used to determine location of the file."
 
     isnamevar
