@@ -5,10 +5,10 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
 
   commands :cat => 'cat'
 
-  filename = "/home/" + resource[:name] + "/.my.cnf"
+  filename = "/home/" + @resource[:name] + "/.my.cnf"
 
   def create
-    content = "[client]\nuser = " + resource[:dbuser] + "\npassword = \"" + resource[:dbpass] + "\"\nhost = " + resource[:dbhost] + "\n"
+    content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = \"" + @resource[:dbpass] + "\"\nhost = " + @resource[:dbhost] + "\n"
 
     File.open(filename, "w") do |file|
       file.write(content)
