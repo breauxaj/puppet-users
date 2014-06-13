@@ -9,7 +9,7 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
     content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = \"" + @resource[:dbpass] + "\"\nhost = " + @resource[:dbhost] + "\n"
 
     File.open(filename, "w") do |file|
-      file.write(content)
+      file.puts(content)
     end
 
   end
