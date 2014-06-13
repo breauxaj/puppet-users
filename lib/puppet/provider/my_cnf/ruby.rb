@@ -10,14 +10,14 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
   def create
     content = "[client]\nuser = " + resource[:dbuser] + "\npassword = \"" + resource[:dbpass] + "\"\nhost = " + resource[:dbhost] + "\n"
 
-    File.open(filename, "wb") do |file|
+    File.open(filename, "w") do |file|
       file.write(content)
     end
 
   end
 
   def destroy
-    cat(['/dev/null', filename])
+    cat(['/dev/null', '>', filename])
   end
 
   def exists?
