@@ -12,6 +12,7 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
     #  file.puts(content)
     #end
 
+    puts(content)
   end
 
   def destroy
