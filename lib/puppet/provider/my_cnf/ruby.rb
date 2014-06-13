@@ -3,10 +3,10 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
 
   commands :cat => 'cat'
 
-  filename = "/home/" + @resource[:name] + "/.my.cnf"
-
   def create
-    content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = \"" + @resource[:dbpass] + "\"\nhost = " + @resource[:dbhost] + "\n"
+    content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = '" + @resource[:dbpass] + "'\nhost = " + @resource[:dbhost] + "\n"
+    
+    filename = "/home/" + @resource[:name] + "/.my.cnf"
 
     File.open(filename, "w") do |file|
       file.puts(content)
@@ -15,15 +15,15 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
   end
 
   def destroy
-    #cat(['/dev/null', '>', filename])
+    filename = "/home/" + @resource[:name] + "/.my.cnf"
+  
+    cat(['/dev/null', '>', filename])
   end
 
   def exists?
-    #File.zero?(filename)
+    filename = "/home/" + @resource[:name] + "/.my.cnf"
+  
+    File.zero?(filename)
   end
-
-  #autorequire(:file) do
-  #  [filename]
-  #end
 
 end
