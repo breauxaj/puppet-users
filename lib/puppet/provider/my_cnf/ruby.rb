@@ -23,7 +23,7 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
   def exists?
     filename = "/home/" + @resource[:name] + "/.my.cnf"
   
-    File.zero?(filename)
+    ! File.zero?(filename)
   end
 
 end
