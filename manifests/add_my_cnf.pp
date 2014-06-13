@@ -8,7 +8,7 @@ define users::add_my_cnf (
     dbuser   => $dbuser,
     dbpass   => $dbpass,
     dbhost   => $dbhost,
-    require  => File["/home/${username}/.my.cnf"],
+    require  => File["/home/${name}/.my.cnf"],
   }
 
 }
