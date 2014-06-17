@@ -3,27 +3,30 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
 
   commands :cat => 'cat'
 
+  def my_file(str)
+    if str =~ /^root$/ then
+      prefix = "/"
+    else
+      prefix = "/home/"
+    end
+    return prefix + str + "/.my.cnf"
+  end
+
   def create
     content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = '" + @resource[:dbpass] + "'\nhost = " + @resource[:dbhost] + "\n"
-    
-    filename = "/home/" + @resource[:name] + "/.my.cnf"
 
-    File.open(filename, "w") do |file|
+    File.open(my_file(@resource[:name]), "w") do |file|
       file.puts(content)
     end
 
   end
 
-  def destroy
-    filename = "/home/" + @resource[:name] + "/.my.cnf"
-  
-    cat(['/dev/null', '>', filename])
+  def destroy  
+    cat(['/dev/null', '>', my_file(@resource[:name])])
   end
 
   def exists?
-    filename = "/home/" + @resource[:name] + "/.my.cnf"
-  
-    ! File.zero?(filename)
+    ! File.zero?(my_file(@resource[:name]))
   end
 
 end
