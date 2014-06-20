@@ -24,4 +24,12 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
     ! File.zero?(my_cnf_file(@resource[:name]))
   end
 
+  def replace
+    content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = '" + @resource[:dbpass] + "'\nhost = " + @resource[:dbhost] + "\n"
+
+    File.open(my_cnf_file(@resource[:name]), "w") do |file|
+      file.puts(content)
+    end
+  end
+
 end

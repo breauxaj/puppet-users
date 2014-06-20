@@ -25,4 +25,11 @@ Puppet::Type.newtype(:my_cnf) do
 
   end
 
+  newproperty(:replace) do
+    desc "Force overwriting the file"
+
+    defaultto :true
+    newvalues(:true, :false)
+  end
+
 end
