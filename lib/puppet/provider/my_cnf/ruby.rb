@@ -4,12 +4,7 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
   commands :cat => 'cat'
 
   def my_file(str)
-    if str =~ /^root$/ then
-      prefix = "/"
-    else
-      prefix = "/home/"
-    end
-    return prefix + str + "/.my.cnf"
+    return File.expand_path("~" + str + "/.my.cnf" )
   end
 
   def create
