@@ -3,6 +3,14 @@ define users::root_my_cnf (
   $dbpass,
   $dbhost
 ) {
+
+  file { '/root/.my.cnf':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+  }
+
   my_cnf { $name:
     ensure   => present,
     dbuser   => $dbuser,
