@@ -1,7 +1,7 @@
+require 'digest/md5'
+
 Puppet::Type.type(:my_cnf).provide(:ruby) do
   desc "Manage the .my.cnf file"
-
-  commands :cat => 'cat'
 
   def my_cnf_file(str)
     return File.expand_path("~" + str + "/.my.cnf" )
@@ -13,22 +13,21 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
     File.open(my_cnf_file(@resource[:name]), "w") do |file|
       file.puts(content)
     end
-
   end
 
-  def destroy  
-    cat(['/dev/null', '>', my_cnf_file(@resource[:name])])
+  def destroy
+    File.truncate(my_cnf_file(@resource[:name]), 0)
   end
 
   def exists?
-    ! File.zero?(my_cnf_file(@resource[:name]))
-  end
-
-  def replace
     content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = '" + @resource[:dbpass] + "'\nhost = " + @resource[:dbhost] + "\n"
+    n = Digest::MD5.hexdigest(content)
+    c = Digest::MD5.hexdigest(IO.read(my_cnf_file(@resource[:name])))
 
-    File.open(my_cnf_file(@resource[:name]), "w") do |file|
-      file.puts(content)
+    if c <=> n
+      return true
+    else
+      return false
     end
   end
 
