@@ -21,10 +21,14 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
 
   def exists?
     content = "[client]\nuser = " + @resource[:dbuser] + "\npassword = '" + @resource[:dbpass] + "'\nhost = " + @resource[:dbhost] + "\n"
-    n = Digest::MD5.hexdigest(content)
-    c = Digest::MD5.hexdigest(IO.read(my_cnf_file(@resource[:name])))
+    current = IO.read(my_cnf_file(@resource[:name]))
 
-    if c <=> n
+    a = Digest::MD5.hexdigest(content)
+    puts a
+    b = Digest::MD5.hexdigest(current)
+    puts b
+
+    if a <=> b
       return true
     else
       return false
