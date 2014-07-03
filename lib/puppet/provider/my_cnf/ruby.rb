@@ -28,7 +28,7 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
     b = Digest::MD5.hexdigest(current)
     puts b
 
-    if a <=> b
+    if a == b
       return true
     else
       return false

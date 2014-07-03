@@ -1,7 +1,19 @@
 Puppet::Type.newtype(:my_cnf) do
   @doc = "Manages the .my.cnf file"
 
-  ensurable
+  ensurable do
+    desc "Manage the content of .my.cnf file. Valid values are: present, absent."
+
+    defaultto(:present)
+
+    newvalue(:present) do
+      provider.create
+    end
+
+    newvalue(:absent) do
+      provider.destroy
+    end
+  end
 
   newparam(:username) do
     desc "Used to determine location of the file."
