@@ -24,9 +24,7 @@ Puppet::Type.type(:my_cnf).provide(:ruby) do
     current = IO.read(my_cnf_file(@resource[:name]))
 
     a = Digest::MD5.hexdigest(content)
-    puts a
     b = Digest::MD5.hexdigest(current)
-    puts b
 
     if a == b
       return true
