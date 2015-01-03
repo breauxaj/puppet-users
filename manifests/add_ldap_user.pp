@@ -4,15 +4,15 @@ define users::add_ldap_user (
   $uid,
 ) {
   user { $name:
-    ensure           => present,
-    groups           => $groups,
+    ensure => present,
+    groups => $groups,
   }
 
   file { "/home/${name}":
-    ensure  => directory,
-    owner   => $uid,
-    group   => $gid,
-    mode    => '0700',
+    ensure => directory,
+    owner  => $uid,
+    group  => $gid,
+    mode   => '0700',
   }
 
   file { "/home/${name}/.gnupg":

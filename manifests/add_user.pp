@@ -49,6 +49,7 @@ define users::add_user (
     owner   => $uid,
     group   => $gid,
     mode    => '0600',
+    require => User[$name],
   }
 
 }
